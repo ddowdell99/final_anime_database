@@ -1,7 +1,7 @@
 *{
     padding: 0;
     margin: 0;
-    font-family: "Light";
+    /* font-family: "Light"; */
 }
 
 @font-face {
@@ -45,8 +45,13 @@ nav {
     text-align: center;
     overflow: hidden;
     margin: 20px 20px;
-    padding: 0px;
+    padding: 0px 0px 10px;
     background-color: white;
+    border-radius: 10px;
+}
+
+.animeCard h4 {
+    padding: 5px;
 }
 
 .animeCard img {

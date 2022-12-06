@@ -4,7 +4,7 @@ import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 
 
-export const Login = ({ setUser }) => {
+export const Login = ({ setUser, getFavorites, getWatchLater }) => {
 
     const navigate = useNavigate()
 
@@ -15,7 +15,7 @@ export const Login = ({ setUser }) => {
         } else {
             return false
         }
-    }
+    };
 
     const validate_password = (password) => {
         if (password < 6) {
@@ -23,7 +23,7 @@ export const Login = ({ setUser }) => {
         } else {
             return true
         }
-    }
+    };
 
     const login = (e) => {
 
@@ -41,6 +41,9 @@ export const Login = ({ setUser }) => {
                 const user = userCredential.user;
                 setUser(user)
                 localStorage.setItem('user', JSON.stringify(user))
+                getFavorites(user)
+                getWatchLater(user)
+                alert('grabbing Favorites')
                 alert('signed In')
                 const database = getDatabase();
 
@@ -64,7 +67,7 @@ export const Login = ({ setUser }) => {
 
             navigate('/')
 
-    }
+    };
 
     return (
         <div>

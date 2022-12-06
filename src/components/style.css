@@ -40,7 +40,7 @@ nav {
 
 .animeCard {
     width: 250px;
-    height: 300px;
+    min-height: 300px;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
     text-align: center;
     overflow: hidden;
@@ -55,9 +55,9 @@ nav {
 }
 
 .animeCard img {
-    width: 100%;
-    height: 80%;
-    margin-bottom: 5px;
+    width: 200px;
+    height: 150px;
+    margin: 10px;
 }
 
 .overall-container {
@@ -83,3 +83,47 @@ nav {
     width: 100%;
 }
   
+.watchLater-container {
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+}
+.watchLaterCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 250px;
+    width: 300px;
+    text-align: center;
+    border: 2px solid black;
+}
+
+.watchLaterCard img {
+
+    height: 150px;
+    width: 100px;
+}
+
+.showWatchLaterContainer {
+    display: flex;
+}
+
+.favorites-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.favoritesCard {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 250px;
+    width: 300px;
+    text-align: center;
+    border: 2px solid black;  
+}
+
+.favoritesCard img {
+    height: 150px;
+    width: 100px;
+}

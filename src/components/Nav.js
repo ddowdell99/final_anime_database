@@ -1,18 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 
-export default function Nav({ setSearch, user, setUser }) {
+export default function Nav({ setSearch, user, setUser, setFavorites, setWatchLater }) {
+
+  const navigate = useNavigate();
 
   const logOut = () => {
     localStorage.removeItem('user')
     setUser({})
+    setFavorites([])
+    setWatchLater([])
+    navigate('/')
   };
 
   return (
     <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">AnimeDojo</a>
+        <Link className="navbar-brand" to="/">AnimeDojo</Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
@@ -24,13 +29,13 @@ export default function Nav({ setSearch, user, setUser }) {
             {user.displayName ?
               <>
                 <li className="nav-item">
-                  <Link className="nav-link active" aria-current="page" to="/">Profile</Link>
+                  <Link className="nav-link active" aria-current="page" to="/profile">Profile</Link>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" onClick={logOut}>Log Out</Link>
                 </li>
                 <div>
-                  Welcome Back, {user.displayName}
+                  Welcome Back, {user.displayName}!
                 </div>
               </>
               :

@@ -8,7 +8,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 
-
+const DATABASE_URL = process.env.REACT_APP_DATABASE_URL
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -19,7 +19,8 @@ const firebaseConfig = {
   projectId: "anime-database-28725",
   storageBucket: "anime-database-28725.appspot.com",
   messagingSenderId: "555432940014",
-  appId: "1:555432940014:web:8517172b00d1ce01357eff"
+  appId: "1:555432940014:web:8517172b00d1ce01357eff",
+  databaseURL: DATABASE_URL
 };
 
 const app = initializeApp(firebaseConfig);

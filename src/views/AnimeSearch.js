@@ -1,7 +1,7 @@
 import React from 'react'
 import { AnimesFound } from '../components/AnimesFound'
 
-export const AnimeSearch = ({ setSearch, animeData, setAnimeInfo, handleSearch, search }) => {
+export const AnimeSearch = ({ setSearch, animeData, setAnimeInfo, handleSearch, search, addFavorite, addWatchLater, favorites, user, watchLater, removeFromFavorites, removeFromWatchLater }) => {
     return (
         <>
             <form className="d-flex search-box" role="search" onSubmit={handleSearch}>
@@ -15,7 +15,8 @@ export const AnimeSearch = ({ setSearch, animeData, setAnimeInfo, handleSearch, 
                 </div>
                 <div className='anime-row'>
                     <div className='row'>
-                        <AnimesFound animeData={animeData} setAnimeInfo={setAnimeInfo} />
+                        <AnimesFound animeData={animeData} setAnimeInfo={setAnimeInfo} addFavorite={addFavorite} addWatchLater={addWatchLater} favorites={favorites} user={user} 
+                        watchLater={watchLater} removeFromFavorites={removeFromFavorites} removeFromWatchLater={removeFromWatchLater} />
                     </div>
                 </div>
             </div>

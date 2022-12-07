@@ -11,9 +11,7 @@ export const AnimesFound = ({ animeData, setAnimeInfo, addFavorite, addWatchLate
                         <div className='animeCard' key={anime.mal_id} >
                             <Link to="/animeCard" onClick={() => setAnimeInfo(anime)}>
                                 <img src={anime.images.jpg.large_image_url} alt="Cover of Anime" />
-                                <div className='anime-info'>
-                                    <h4>{anime.title}</h4>
-                                </div>
+
                             </Link>
                             {user.uid ?
                                 <>
@@ -35,10 +33,18 @@ export const AnimesFound = ({ animeData, setAnimeInfo, addFavorite, addWatchLate
                                             </>
                                         }
                                     </div>
+                                    <div className='anime-info'>
+                                        <h4>{anime.title}</h4>
+                                    </div>
                                 </>
                                 :
                                 <>
+                                    <div className='anime-info'>
+                                        <h4>{anime.title}</h4>
+                                    </div>
                                 </>
+                                
+
                             }
                         </div>
 

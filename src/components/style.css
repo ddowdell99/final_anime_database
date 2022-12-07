@@ -39,19 +39,26 @@ nav {
 
 
 .animeCard {
-    width: 250px;
-    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 240px;
+    height: 240px;
     box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
     text-align: center;
     overflow: hidden;
     margin: 20px 20px;
-    padding: 0px 0px 10px;
+    padding: 0px 6px 10px;
     background-color: white;
     border-radius: 10px;
+    
+
 }
 
 .animeCard h4 {
     padding: 5px;
+    font-size: 15px;
+    text-overflow: ellipsis;
 }
 
 .animeCard img {
@@ -77,10 +84,32 @@ nav {
 
 .sidebar-container {
     width: 20%;
+    margin-top: 15px;
 }
 
 .sidebar-container img {
     width: 100%;
+    border: 2px solid black;
+}
+
+.sidebar-container h4 {
+    font-size: 17px;
+}
+
+.sidebar-info {
+    margin-top:15px ;
+    background-color: white;
+    border: 2px solid black;
+}
+
+.animeCardButtons{
+    display: flex;
+
+}
+
+.animeCardButtons button {
+    margin: 1px;
+    padding: 0px 5px;
 }
   
 .watchLater-container {
@@ -126,4 +155,66 @@ nav {
 .favoritesCard img {
     height: 150px;
     width: 100px;
+}
+
+.searchBoxContainer {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px ;
+    border: 2px solid black;
+    padding: 5px;
+    width: 50%;
+    height: 50px;
+    background-color: black;
+
+}
+
+.animeFound-buttons button {
+    margin: 0px 5px;
+    font-size: 12px;
+    padding: 2px;
+    transition: .2s all ease-in-out;
+}
+
+
+
+
+.logoutButton {
+    display: flex;
+    justify-content: right;
+    border: 2px solid black;
+}
+
+.realSearchBoxContainer {
+    display: flex;
+    justify-content: center;
+    position: sticky;
+    top: 50px;
+    height: 150px;
+    background-image: url(/src/images/anime-background.webp);
+}
+
+.navbar {
+    position: sticky;
+    padding: 0px;
+    top: 0px;
+    height: 80px;
+    background-color: black;
+    color: white; 
+}
+
+.navbar a {
+    color: white;
+}
+
+.navbar a:hover {
+    background-image: url(/src/images/Team_Kakashi.webp);
+    background-size: 63px 40px;
+    color: white;
+}
+
+.searchCommand {
+    background-color: grey !important;
+    border-color: black;
+    color: darkblue;
 }

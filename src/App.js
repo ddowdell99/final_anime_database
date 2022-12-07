@@ -21,7 +21,7 @@ export default function App() {
     return {}
   };
 
-  const [search, setSearch] = useState('Naruto');
+  const [search, setSearch] = useState('');
   const [animeData, setAnimeData] = useState();
   const [animeInfo, setAnimeInfo] = useState();
   const [user, setUser] = useState(getUserFromLS());
@@ -29,7 +29,7 @@ export default function App() {
   const [watchLater, setWatchLater] = useState([]);
 
   const getData = async () => {
-    const res = await fetch(`https://api.jikan.moe/v4/anime?q=${search}&limit=20`)
+    const res = await fetch(`https://api.jikan.moe/v4/anime?q=${search}&limit=20&sfw`)
     const data = await res.json(); //HAVE TO AWAIT THE DATA AS WELL BC PROMISE NOT FULFILLED RIGHT AWAY
     setAnimeData(data.data)
   };
@@ -146,7 +146,7 @@ export default function App() {
           <Route path='/' element={<AnimeSearch setSearch={setSearch} animeData={animeData} setAnimeInfo={setAnimeInfo} handleSearch={handleSearch}
             search={search} addFavorite={addFavorite} addWatchLater={addWatchLater} favorites={favorites} user={user} watchLater={watchLater} removeFromFavorites={removeFromFavorites}
             removeFromWatchLater={removeFromWatchLater} />} />
-          <Route path='/animeCard' element={<AnimeCard animeInfo={animeInfo} />} />
+          <Route path='/animeCard' element={<AnimeCard animeInfo={animeInfo} addFavorite={addFavorite} addWatchLater={addWatchLater} />} />
           <Route path='/signup' element={<SignUp setUser={setUser} />} />
           <Route path='/login' element={<Login setUser={setUser} getFavorites={getFavorites} getWatchLater={getWatchLater} />} />
           <Route path='/profile' element={<Profile user={user} setAnimeInfo={setAnimeInfo} watchLater={watchLater} addFavorite={addFavorite} addWatchLater={addWatchLater}

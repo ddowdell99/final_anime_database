@@ -4,10 +4,14 @@ import { AnimesFound } from '../components/AnimesFound'
 export const AnimeSearch = ({ setSearch, animeData, setAnimeInfo, handleSearch, search, addFavorite, addWatchLater, favorites, user, watchLater, removeFromFavorites, removeFromWatchLater }) => {
     return (
         <>
-            <form className="d-flex search-box" role="search" onSubmit={handleSearch}>
+        <div className='realSearchBoxContainer'>
+        <div className='searchBoxContainer'>
+            <form className="d-flex search-box w-100" role="search" onSubmit={handleSearch}>
                 <input className="form-control me-2" type="search" placeholder="Search For Anime..." aria-label="Search" value={search} onChange={(e) => {setSearch(e.target.value)}} />
-                <button className="btn btn-outline-success" type="submit">Search</button>
+                <button className="btn btn-outline-success searchCommand" type="submit">Search</button>
             </form>
+            </div>
+            </div>
 
             <div className='container'>
                 <div className='animeInfo'>

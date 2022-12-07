@@ -15,6 +15,7 @@ export default function Nav({ setSearch, user, setUser, setFavorites, setWatchLa
   };
 
   return (
+    
     <nav className="navbar navbar-expand-lg">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">AnimeDojo</Link>
@@ -26,17 +27,20 @@ export default function Nav({ setSearch, user, setUser, setFavorites, setWatchLa
             <li className="nav-item">
               <Link className="nav-link active" aria-current="page" to="/">Search</Link>
             </li>
+            
             {user.displayName ?
               <>
                 <li className="nav-item">
                   <Link className="nav-link active" aria-current="page" to="/profile">Profile</Link>
                 </li>
-                <li className="nav-item">
-                  <Link className="nav-link" onClick={logOut}>Log Out</Link>
-                </li>
+                
                 <div>
                   Welcome Back, {user.displayName}!
                 </div>
+                
+                <li className="nav-item">
+                  <Link className="nav-link" onClick={logOut}>Log Out</Link>
+                </li>
               </>
               :
               <>
@@ -46,9 +50,6 @@ export default function Nav({ setSearch, user, setUser, setFavorites, setWatchLa
                 <li className="nav-item">
                   <Link className="nav-link" to="/signup">Sign-Up</Link>
                 </li>
-                <div>
-                  Hello, GUEST!
-                </div>
               </>}
 
 

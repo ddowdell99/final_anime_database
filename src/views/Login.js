@@ -2,9 +2,10 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 import { getDatabase, ref, update } from "firebase/database";
 import React from 'react'
 import { Link, useNavigate } from 'react-router-dom';
+import { Alert}  from 'react-bootstrap/Alert';
 
 
-export const Login = ({ setUser, getFavorites, getWatchLater }) => {
+export const Login = ({ setUser, getFavorites, getWatchLater, addMessage }) => {
 
     const navigate = useNavigate()
 
@@ -43,62 +44,67 @@ export const Login = ({ setUser, getFavorites, getWatchLater }) => {
                 localStorage.setItem('user', JSON.stringify(user))
                 getFavorites(user)
                 getWatchLater(user)
-                alert('grabbing Favorites')
-                alert('signed In')
+                addMessage('Successfully Logged In!', 'success')
                 const database = getDatabase();
 
                 update(ref(database, 'users/' + user.uid), {
                     last_login: Date.now()
                 })
                     .then(() => {
-                        alert('data stored successfully')
                     })
                     .catch((error) => {
-                        alert('unsuccessful, error' + error)
+                        addMessage('Unsuccessful, error' + error, 'danger')
                     })
 
             })
             .catch((error) => {
-                alert(error)
+                addMessage(error, 'danger')
                 const errorCode = error.code;
                 const errorMessage = error.message;
 
             })
 
-            navigate('/')
+        navigate('/')
 
     };
 
     return (
         <div>
-            <form onSubmit={(e) => { login(e) }}>
-                <div class="login-container">
-                    <div class="card-signup card">
+            <form className='login-form' onSubmit={(e) => { login(e) }}>
+                <div class="login-container w-50">
+                    <div class="card-login card">
+                        <div className='sideLoginPic'>
+                        </div>
                         <div class="card-body">
-                            <h5 class="signup-title">Login to your Account!</h5>
-                            <p class="username-text my-2"><b>Email</b></p>
-                            <div class="input-group flex-nowrap">
-                                <input placeholder='Email' id='loginEmail' name='email' className='form-control' type='email' />
+                            <h2 class="login-title"><strong>Anime</strong>Dojo</h2>
+                            <h5 className='welcome-text'>Welcome back! Log in to your account to explore the world of anime:</h5>
+                            <div className='email-container'>
+                                <p class="username-text my-2"><i class="fa-regular fa-envelope"></i></p>
+                                <div class="input-group flex-nowrap emailInput">
+                                    <input placeholder='Email' id='loginEmail' name='email' className='form-control' type='email' />
+                                </div>
                             </div>
-                            <div class="password-text">
-                                <p class="password my-2"><b>Password</b></p>
+                            <div className='password-container'>
+                                <div class="password-text">
+                                    <p class="password my-2"><i class="fa-solid fa-lock"></i></p>
+                                </div>
+                                <div class="input-group flex-nowrap">
+                                    <input placeholder='Password' id="loginPass" name='password' className='form-control' type='password' />
+                                </div>
                             </div>
-                            <div class="input-group flex-nowrap">
-                                <input placeholder='Password' id="loginPass" name='password' className='form-control' type='password' />
-                            </div>
-                            <div class="sign-up-button">
+                            <div class="login-button">
                                 <button type='submit' className='btn btn-primary' >Log In</button>
                             </div>
                             <div id="middle-bar">
                                 <div class="left-bar">
                                     <hr />
                                 </div>
-                                <div class="middle-text">New To Padawans Instagram?</div>
+                                <div class="middle-text">New To&nbsp;<strong>Anime</strong>Dojo?</div>
                                 <div class="left-bar">
                                     <hr />
                                 </div>
                             </div>
-                            <div class="create-account">
+                            <div class="create-account2">
                                 <Link to="/signup">
                                     <button type="button" class="btn btn-primary w-100">Create an Account</button>
                                 </Link>

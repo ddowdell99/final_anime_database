@@ -1,17 +1,11 @@
 *{
     padding: 0;
     margin: 0;
-    /* font-family: "Light"; */
+    font-family: "Alegreya";
 }
 
-@font-face {
-    font-family: "Light";   /*Can be any text*/
-    src: local("NinjaNaruto-YOn4"),
-      url("../fonts/NinjaNaruto-YOn4.ttf") format("truetype");
-  }
-
 body {
-    background-color: #f7d9b3;
+    background-color: #a12a1a;
 }
 
 nav {
@@ -21,9 +15,32 @@ nav {
     display: flex;
 }
 
+.welcomeBackContainer {
+    display: flex !important;
+    align-items: center;
+}
+
+.loginSignUpContainer {
+    display: flex !important;
+}
+
+.nav-container {
+    margin: 50px
+}
+
+.profileNav {
+    max-width: 500px;
+}
+
+.video-responsive {
+    display: flex;
+    justify-content: center;
+}
+
+
 .container {
     width: 100%;
-    margin: 100px auto;
+    margin: 25px auto;
     display: flex;
 }
 
@@ -39,6 +56,7 @@ nav {
 
 
 .animeCard {
+    
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -51,8 +69,10 @@ nav {
     padding: 0px 6px 10px;
     background-color: white;
     border-radius: 10px;
-    
+}
 
+.animeCard:hover {
+    transform: scale(1.25)
 }
 
 .animeCard h4 {
@@ -115,26 +135,50 @@ nav {
 .watchLater-container {
     display: flex;
     flex-direction: column;
-    border: 2px solid black;
 }
 .watchLaterCard {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    height: 250px;
-    width: 300px;
+    max-width: 275px;
+    height: 275px;
+    overflow: hidden;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
     text-align: center;
-    border: 2px solid black;
+    margin: 20px 20px;
+    padding: 0px 6px 10px;
+    background-color: white;
+    border-radius: 10px;
+    white-space: initial;
+}
+
+.watchLaterCard:hover {
+    transform: scale(1.15)
 }
 
 .watchLaterCard img {
-
     height: 150px;
-    width: 100px;
+    width: 200px;
+    margin-top: 10px;
+}
+
+.watchLaterCard button {
+    margin: 0px 5px;
+    font-size: 12px;
+    padding: 2px 5px;
+    transition: .2s all ease-in-out;
+    border-radius: 10px;
+    background-color: #bd8857;
+}
+
+.watchLaterCard p {
+    margin: 1px;
 }
 
 .showWatchLaterContainer {
     display: flex;
+    
 }
 
 .favorites-container {
@@ -145,16 +189,49 @@ nav {
 .favoritesCard {
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
     align-items: center;
-    height: 250px;
-    width: 300px;
+    min-width: 250px;
+    height: 265px;
+    overflow: hidden;
+    box-shadow: 5px 5px 5px rgba(0,0,0,0.5);
     text-align: center;
-    border: 2px solid black;  
+    margin: 20px 20px;
+    padding: 0px 6px 10px;
+    background-color: white;
+    border-radius: 10px;
+    white-space: initial;
+    
+     
+}
+
+.synopsis-container {
+    margin-top: 15px;
+}
+
+.favoritesCard:hover {
+    transform: scale(1.15)
+}
+
+.favoritesCard p {
+    margin: 2px;
+    overflow: hidden;
 }
 
 .favoritesCard img {
     height: 150px;
-    width: 100px;
+    width: 200px;
+    margin-top: 10px;
+}
+
+.favoritesCard button {
+    width: 200px;
+    margin: 0px 5px;
+    font-size: 12px;
+    padding: 2px 5px;
+    transition: .2s all ease-in-out;
+    border-radius: 10px;
+    background-color: #bd8857;
 }
 
 .searchBoxContainer {
@@ -166,14 +243,21 @@ nav {
     width: 50%;
     height: 50px;
     background-color: black;
+    border-radius: 25px;
 
+}
+
+.searchBoxContainer input {
+    border-radius: 25px;
 }
 
 .animeFound-buttons button {
     margin: 0px 5px;
     font-size: 12px;
-    padding: 2px;
+    padding: 2px 5px;
     transition: .2s all ease-in-out;
+    border-radius: 10px;
+    background-color: #bd8857;
 }
 
 
@@ -189,9 +273,11 @@ nav {
     display: flex;
     justify-content: center;
     position: sticky;
-    top: 50px;
+    top: 75px;
     height: 150px;
-    background-image: url(/src/images/anime-background.webp);
+    background-image: url(/src/images/anime-dark-backgroundf.jpg);
+    background-position: center;
+
 }
 
 .navbar {
@@ -205,16 +291,246 @@ nav {
 
 .navbar a {
     color: white;
+    margin: 25px;
 }
 
-.navbar a:hover {
-    background-image: url(/src/images/Team_Kakashi.webp);
-    background-size: 63px 40px;
-    color: white;
+.navbar-brand {
+    width: 125px;
+    text-align: center;
+}
+.navbar-brand:hover {
+    background-image: url(/src/images/comic-explosion2.png);
+    background-size: 150px 85px;
+    background-position: center;
+    color: black;
+
+}
+
+.nav-link {
+    width: 75px;
+    text-align: center;
+}
+
+.nav-link:hover {
+    background-image: url(/src/images/comic-explosion2.png);
+    background-size: cover;
+    background-position: center;
+    color: black;
 }
 
 .searchCommand {
-    background-color: grey !important;
     border-color: black;
-    color: darkblue;
+    color: white;
+}
+
+.searchCommand:hover {
+    background-color: black;
+    border-color: black;
+}
+
+.card-login {
+    display: flex;
+    flex-direction: row;
+    border-radius: 10px;
+    height: 470px;
+}
+
+.login-form {
+    display: flex;
+    justify-content: center;
+    margin-top: 125px;
+    min-height: 470px;
+}
+
+.sideLoginPic {
+    background-image: url(/src/images/lantern-login-pic.jpg);
+    width: 40%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.sideSignUpPic {
+    background-image: url(/src/images/wonderous-boy.jpg);
+    width: 40%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 10px 0px 0px 10px;
+    background-position: center;
+}
+
+.welcome-text {
+    max-width: 275px;
+    margin-bottom: 20px;
+}
+
+.email-container {
+    display: flex;
+}
+
+.email-container i {
+    margin: 5px 5px 5px 4px;
+}
+
+.password-container {
+    display: flex;
+}
+
+.password-container i {
+    width: 16px;
+    margin: 5px;
+}
+
+#loginEmail {
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+    border-radius: 0px;
+}
+
+#loginPass {
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+    border-radius: 0px;
+    margin-bottom: 15px;
+}
+
+.login-button {
+    display: flex;
+    justify-content: center;
+    margin: 15px 0px 35px;
+}
+
+.login-button button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50px;
+    width: 100px;
+    height: 35px;
+}
+
+.middle-text {
+    display: flex;
+    justify-content: center;
+}
+
+.create-account {
+    display: flex;
+    justify-content: center;
+}
+
+.create-account button {
+    display: flex;
+    align-items: center;
+    height: 35px;
+    width: 125px;
+    border-radius: 50px;
+}
+/* Ok maybe next time write this as one css style since I used it almost 6 times */
+
+#username {
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+    border-radius: 0px;
+}
+
+#email {
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+    border-radius: 0px;
+}
+
+#password {
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+    border-radius: 0px;
+}
+
+#password2 {
+    border-top: 1px solid white;
+    border-right: 1px solid white;
+    border-left: 1px solid white;
+    border-radius: 0px;
+}
+
+.signup-button {
+    display: flex;
+    justify-content: center;
+    margin: 15px; 
+}
+
+.signup-button button {
+    display: flex;
+    align-items: center;
+    border-radius:  50px;
+    margin: 15px 0px 25px;
+    height: 35px;
+}
+
+.signup-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 125px;
+}
+
+.left-bar hr {
+    margin: 10px 0px;
+}
+
+.create-account2 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75px;
+}
+
+.create-account2 button {
+    display: flex;
+    align-items: center;
+    border-radius: 50px;
+    height: 35px;
+}
+
+.testimonial-group > .row {
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.testimonial-group > .row > .col-xs-4 {
+    display: inline-block;
+    float: none;
+}
+
+.profile-headers {
+    font-weight: bolder;
+    margin-top: 36px;
+    font-size: 25px;
+    color: white;
+}
+
+.full-container {
+    margin: 25px 75px;
+}
+
+.profile-name {
+    margin-bottom: 35px;
+    margin-top: 35px;
+}
+
+.profile-name h2 {
+    font-weight: bolder;
+    font-size: 50px;
+    color: rgb(228, 227, 167);
+    text-shadow: 5px 5px 5px rgba(0,0,0,0.5);
+}
+
+.alert {
+    position: sticky;
+    top: 80px;
+    margin-bottom: 0px;
 }

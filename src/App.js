@@ -27,6 +27,7 @@ export default function App() {
   const [user, setUser] = useState(getUserFromLS());
   const [favorites, setFavorites] = useState([]);
   const [watchLater, setWatchLater] = useState([]);
+  const [message, setMessage] = useState({})
 
   const getData = async () => {
     const res = await fetch(`https://api.jikan.moe/v4/anime?q=${search}&limit=20&sfw`)
@@ -50,12 +51,12 @@ export default function App() {
   const addFavorite = (anime) => {
     const newFavorites = { ...favorites };
     if (anime.mal_id in newFavorites) {
-      alert('Already have anime in Favorites')
+      addMessage('Already have anime in Favorites', 'danger')
       return
     }
     else {
       newFavorites[anime.mal_id] = anime
-      alert('Anime added to favorites')
+      addMessage('Anime added to favorites', 'success')
     }
     setFavorites(newFavorites)
     if (user.uid) {
@@ -79,12 +80,12 @@ export default function App() {
   const addWatchLater = (anime) => {
     const newWatchLater = { ...watchLater };
     if (anime.mal_id in newWatchLater) {
-      alert('Anime already in Watch Later')
+      addMessage('Anime already in Watch Later', 'danger')
       return
     }
     else {
       newWatchLater[anime.mal_id] = anime
-      alert('Anime added to Watch Later')
+      addMessage('Anime added to Watch Later', 'success')
     }
     setWatchLater(newWatchLater)
     if (user.uid) {
@@ -94,7 +95,7 @@ export default function App() {
 
   const removeFromFavorites = (anime) => {
     const newFavorites2 = { ...favorites };
-    for (let [i,anime2] of Object.entries(newFavorites2)) {
+    for (let [i, anime2] of Object.entries(newFavorites2)) {
       if (toString(anime.mal_id) === toString(newFavorites2[i])) {
         delete newFavorites2[anime.mal_id]
         break
@@ -105,12 +106,13 @@ export default function App() {
     setFavorites(newFavorites2)
     if (user.uid) {
       addToFavDB(newFavorites2)
+      addMessage('Anime removed from favorites', 'success')
     }
   };
 
   const removeFromWatchLater = (anime) => {
     const newWatchLater2 = { ...watchLater };
-    for (let [i,anime2] of Object.entries(newWatchLater2)) {
+    for (let [i, anime2] of Object.entries(newWatchLater2)) {
       if (toString(anime.mal_id) === toString(newWatchLater2[i])) {
         delete newWatchLater2[anime.mal_id]
         break
@@ -121,7 +123,12 @@ export default function App() {
     setWatchLater(newWatchLater2)
     if (user.uid) {
       addToWatchLaterDB(newWatchLater2)
+      addMessage('Anime removed from watch later', 'success')
     }
+  };
+
+  const addMessage = (message, category) => {
+    setMessage({ message: message, category: category })
   };
 
   const handleSearch = (e) => {
@@ -140,17 +147,24 @@ export default function App() {
     <Router>
       <div>
         <Nav setUser={setUser} user={user} setFavorites={setFavorites} setWatchLater={setWatchLater} />
-
+        {message?
+        <div>
+        <p className={`alert alert-${message.category} alert-dismissable fade show`} role="alert">{message.message}  <button onClick={() => setMessage({})} type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </p>
+        </div>
+        :
+        <>
+        </>}
         <Routes>
 
           <Route path='/' element={<AnimeSearch setSearch={setSearch} animeData={animeData} setAnimeInfo={setAnimeInfo} handleSearch={handleSearch}
             search={search} addFavorite={addFavorite} addWatchLater={addWatchLater} favorites={favorites} user={user} watchLater={watchLater} removeFromFavorites={removeFromFavorites}
             removeFromWatchLater={removeFromWatchLater} />} />
-          <Route path='/animeCard' element={<AnimeCard animeInfo={animeInfo} addFavorite={addFavorite} addWatchLater={addWatchLater} />} />
-          <Route path='/signup' element={<SignUp setUser={setUser} />} />
-          <Route path='/login' element={<Login setUser={setUser} getFavorites={getFavorites} getWatchLater={getWatchLater} />} />
+          <Route path='/animeCard' element={<AnimeCard animeInfo={animeInfo} addFavorite={addFavorite} addWatchLater={addWatchLater} user={user} favorites={favorites} removeFromFavorites={removeFromFavorites} watchLater={watchLater} removeFromWatchLater={removeFromWatchLater} />} />
+          <Route path='/signup' element={<SignUp setUser={setUser} addMessage={addMessage}/>} />
+          <Route path='/login' element={<Login setUser={setUser} getFavorites={getFavorites} getWatchLater={getWatchLater} addMessage={addMessage} />} />
           <Route path='/profile' element={<Profile user={user} setAnimeInfo={setAnimeInfo} watchLater={watchLater} addFavorite={addFavorite} addWatchLater={addWatchLater}
-            favorites={favorites} removeFromFavorites={removeFromFavorites} removeFromWatchLater={removeFromWatchLater}/>} />
+            favorites={favorites} removeFromFavorites={removeFromFavorites} removeFromWatchLater={removeFromWatchLater} />} />
 
         </Routes>
 

@@ -1,10 +1,10 @@
 import React from 'react'
 import { getAuth, createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { getDatabase, ref, set } from "firebase/database";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 
-export const SignUp = ({ setUser }) => {
+export const SignUp = ({ setUser, addMessage }) => {
   const navigate = useNavigate();
 
   const register = (e) => {
@@ -30,10 +30,10 @@ export const SignUp = ({ setUser }) => {
         updateProfile(auth.currentUser, {
           displayName: username
         }).then(() => {
-          alert('Profile updated!')
+          addMessage('Successfully created new user!', 'success')
           // ...
         }).catch((error) => {
-          alert('An error occurred: ' + error)
+          addMessage('An error occurred: ' + error, 'danger')
           // ...
         });
         const database = getDatabase();
@@ -44,10 +44,9 @@ export const SignUp = ({ setUser }) => {
           last_login: Date.now()
         })
           .then(() => {
-            alert('data stored successfully')
           })
           .catch((error) => {
-            alert('unsuccessful, error' + error)
+            addMessage('An error occured: ' + error, 'danger')
           })
 
         // ...
@@ -67,12 +66,14 @@ export const SignUp = ({ setUser }) => {
     if (regex.test(email) === true) {
       return true
     } else {
+      addMessage('Invalid Email. Please check what you have typed and try again', 'danger')
       return false
     }
   }
 
   const validate_password = (password) => {
     if (password < 6) {
+      addMessage('Password must be longer than 6 characters!', 'danger')
       return false
     } else {
       return true
@@ -83,6 +84,7 @@ export const SignUp = ({ setUser }) => {
     if (password === password2) {
       return true
     } else {
+      addMessage('Passwords do NOT match!', 'danger')
       return false
     }
   }
@@ -101,33 +103,51 @@ export const SignUp = ({ setUser }) => {
 
   return (
     <div>
-      <form onSubmit={(e) => { register(e) }}>
-        <div class="signup-container">
-          <div class="card-signup card">
-            <div class="card-body">
-              <h5 class="signup-title">Create your Padawans Instagram Account!</h5>
-              <h3>Discover what your friends are posting</h3>
-              <p class="username-text my-2"><b>Username</b></p>
-              <div class="input-group flex-nowrap">
-                <input placeholder='Username' id='username' name='username' className='form-control' type='text' />
-              </div>
-              <p class="email-text my-2"><b>Email Address</b></p>
-              <div class="input-group flex-nowrap">
-                <input placeholder='Email' id='email' name='email' className='form-control' type='email' />
-              </div>
-              <div class="password-text">
-                <p class="password my-2"><b>Password</b></p>
-              </div>
-              <div class="input-group flex-nowrap">
-                <input placeholder='Password' id='password' name='password' className='form-control' type='password' />
-              </div>
-              <div class="confirm-password-text">
-                <p class="password my-2"><b>Confirm Password</b></p>
-              </div>
-              <input placeholder='Confirm Password' id='password2' name='password2' className='form-control' type='password' />
+      <form className='signup-container' onSubmit={(e) => { register(e) }}>
+        <div class="login-container w-50">
+          <div class="card-login card">
+            <div className='sideSignUpPic'>
             </div>
-            <div class="sign-up-button">
-              <button type='submit' className='btn btn-primary w-50'>Create Account</button>
+            <div class="card-body">
+              <h2 class="login-title"><strong>Anime</strong>Dojo</h2>
+              <h5 className='welcome-text'>Join the world of <strong>Anime</strong>Dojo!</h5>
+              <div className='email-container'>
+                <div class="input-group flex-nowrap emailInput">
+                  <input placeholder='Username' id='username' name='username' className='form-control' type='text' />
+                </div>
+              </div>
+              <div className='email-container'>
+                <div class="input-group flex-nowrap emailInput">
+                  <input placeholder='Email' id='email' name='email' className='form-control' type='email' />
+                </div>
+              </div>
+              <div className='password-container'>
+                <div class="input-group flex-nowrap">
+                  <input placeholder='Password' id='password' name='password' className='form-control' type='password' />
+                </div>
+              </div>
+              <div className='password-container'>
+                <div class="input-group flex-nowrap">
+                  <input placeholder='Confirm Password' id='password2' name='password2' className='form-control' type='password' />
+                </div>
+              </div>
+              <div class="signup-button">
+                <button type='submit' className='btn btn-primary' >Create Account</button>
+              </div>
+              <div id="middle-bar">
+                <div class="left-bar">
+                  <hr />
+                </div>
+                <div class="middle-text">Already Have an Account?</div>
+                <div class="left-bar">
+                  <hr />
+                </div>
+              </div>
+              <div class="create-account">
+                <Link to="/login">
+                  <button type="button" class="btn btn-primary w-100">Log In</button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>

@@ -8,7 +8,7 @@ export const AnimeSearch = ({ setSearch, animeData, setAnimeInfo, handleSearch, 
         <div className='searchBoxContainer'>
             <form className="d-flex search-box w-100" role="search" onSubmit={handleSearch}>
                 <input className="form-control me-2" type="search" placeholder="Search For Anime..." aria-label="Search" value={search} onChange={(e) => {setSearch(e.target.value)}} />
-                <button className="btn btn-outline-success searchCommand" type="submit">Search</button>
+                <button className="btn btn-outline-success searchCommand" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
             </div>
             </div>

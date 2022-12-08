@@ -11,6 +11,7 @@ export const AnimeCard = ({ animeInfo, addFavorite, addWatchLater, user, favorit
 
                     <h4><strong>Ranking:</strong> #{animeInfo.rank}</h4>
                     <h4><strong>Popularity:</strong> #{animeInfo.popularity}</h4>
+                    <h4><strong>MAL Score:</strong> {animeInfo.score} out of 10</h4>
                     <h4><strong>Type:</strong> {animeInfo.type}</h4>
                     <h4><strong>Episodes:</strong> {animeInfo.episodes}</h4>
                     <h4><strong>Aired From:</strong> {animeInfo.aired.string}</h4>

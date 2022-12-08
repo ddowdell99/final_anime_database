@@ -9,17 +9,20 @@ import { getAuth } from "firebase/auth";
 import { getDatabase } from "firebase/database";
 
 const DATABASE_URL = process.env.REACT_APP_DATABASE_URL
-
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+const FIREBASE_API_KEY = process.env.REACT_APP_FIREBASE_API_KEY
+const FIREBASE_AUTH_DOMAIN = process.env.REACT_APP_FIREBASE_AUTH_DOMAIN
+const FIREBASE_PROJECT_ID = process.env.REACT_APP_FIREBASE_PROJECT_ID
+const FIREBASE_STORAGE_BUCKET = process.env.REACT_APP_FIREBASE_STORAGE_BUCKET
+const FIREBASE_APP_ID = process.env.REACT_APP_FIREBASE_APP_ID
+const FIREBASE_MESSAGE_ID = process.env.REACT_APP_FIREBASE_MESSAGE_ID
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBM2dcKZr05RYpef3lnvKQppzT9-kfhxOI",
-  authDomain: "anime-database-28725.firebaseapp.com",
-  projectId: "anime-database-28725",
-  storageBucket: "anime-database-28725.appspot.com",
-  messagingSenderId: "555432940014",
-  appId: "1:555432940014:web:8517172b00d1ce01357eff",
+  apiKey: FIREBASE_API_KEY,
+  authDomain: FIREBASE_AUTH_DOMAIN,
+  projectId: FIREBASE_PROJECT_ID,
+  storageBucket: FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: FIREBASE_MESSAGE_ID,
+  appId: FIREBASE_APP_ID,
   databaseURL: DATABASE_URL
 };
 

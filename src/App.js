@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
+import { Routes, Route, BrowserRouter as Router, useNavigate } from 'react-router-dom';
 import Nav from './components/Nav';
 import { AnimeCard } from './views/AnimeCard';
 import { AnimeSearch } from './views/AnimeSearch';
@@ -7,6 +7,7 @@ import { SignUp } from './views/SignUp';
 import { Login } from './views/Login';
 import { Profile } from './views/Profile';
 import { getDatabase, ref, set, child, get } from 'firebase/database';
+import { RandomAnimeCard } from './views/RandomAnimeCard';
 
 
 
@@ -21,13 +22,15 @@ export default function App() {
     return {}
   };
 
+
   const [search, setSearch] = useState('');
   const [animeData, setAnimeData] = useState();
   const [animeInfo, setAnimeInfo] = useState();
   const [user, setUser] = useState(getUserFromLS());
   const [favorites, setFavorites] = useState([]);
   const [watchLater, setWatchLater] = useState([]);
-  const [message, setMessage] = useState({})
+  const [message, setMessage] = useState({});
+  const [randomAnimeInfo, setRandomAnimeInfo] = useState();
 
   const getData = async () => {
     const res = await fetch(`https://api.jikan.moe/v4/anime?q=${search}&limit=20&sfw`)
@@ -146,7 +149,7 @@ export default function App() {
 
     <Router>
       <div>
-        <Nav setUser={setUser} user={user} setFavorites={setFavorites} setWatchLater={setWatchLater} />
+        <Nav setUser={setUser} user={user} setFavorites={setFavorites} setWatchLater={setWatchLater} randomAnimeInfo={randomAnimeInfo} setRandomAnimeInfo={setRandomAnimeInfo} />
         {message?
         <div>
         <p className={`alert alert-${message.category} alert-dismissable fade show`} role="alert">{message.message}  <button onClick={() => setMessage({})} type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -161,6 +164,7 @@ export default function App() {
             search={search} addFavorite={addFavorite} addWatchLater={addWatchLater} favorites={favorites} user={user} watchLater={watchLater} removeFromFavorites={removeFromFavorites}
             removeFromWatchLater={removeFromWatchLater} />} />
           <Route path='/animeCard' element={<AnimeCard animeInfo={animeInfo} addFavorite={addFavorite} addWatchLater={addWatchLater} user={user} favorites={favorites} removeFromFavorites={removeFromFavorites} watchLater={watchLater} removeFromWatchLater={removeFromWatchLater} />} />
+          <Route path='/randomAnimeCard' element={<RandomAnimeCard randomAnimeInfo={randomAnimeInfo} addFavorite={addFavorite} addWatchLater={addWatchLater} user={user} favorites={favorites} removeFromFavorites={removeFromFavorites} watchLater={watchLater} removeFromWatchLater={removeFromWatchLater} />} />
           <Route path='/signup' element={<SignUp setUser={setUser} addMessage={addMessage}/>} />
           <Route path='/login' element={<Login setUser={setUser} getFavorites={getFavorites} getWatchLater={getWatchLater} addMessage={addMessage} />} />
           <Route path='/profile' element={<Profile user={user} setAnimeInfo={setAnimeInfo} watchLater={watchLater} addFavorite={addFavorite} addWatchLater={addWatchLater}

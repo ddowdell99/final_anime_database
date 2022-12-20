@@ -309,7 +309,11 @@ nav {
 }
 
 .nav-link {
-    width: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 64px;
+    width: 125px;
     text-align: center;
 }
 
